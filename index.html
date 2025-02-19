@@ -21,12 +21,12 @@
             margin: 50px;
         }
 
-        /* Ukuran foto profil yang lebih kecil */
+        /* Foto Profil */
         .profile-pic {
-            width: 100px; /* Lebih kecil dari sebelumnya */
-            height: 100px; /* Sesuaikan dengan width */
+            width: 100px;
+            height: 100px;
             border-radius: 50%;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Dikurangi agar bio dan email tidak terlalu berjarak */
         }
 
         .profile-info h1 {
@@ -34,37 +34,83 @@
             margin: 10px 0;
         }
 
-        /* Memperbaiki ukuran font bio */
         .profile-info p {
-            font-size: 12px !important; /* Ukuran teks lebih kecil */
-            margin: 5px 0;
+            font-size: 12px !important;
+            margin: 0;
             line-height: 1.4;
         }
 
-        /* Menyesuaikan warna dan ukuran teks untuk email */
-        .contact-info p {
-            font-size: 12px !important; /* Sama dengan ukuran bio */
-            margin: 5px 0;
-        }
-
         .contact-info a {
-            color: #0066cc; /* Warna Biru */
+            color: #0066cc;
             text-decoration: none;
             font-weight: bold;
+            font-size: 12px;
+            display: block; /* Supaya email langsung di bawah bio tanpa jarak lebih */
         }
 
         .contact-info a:hover {
             text-decoration: underline;
         }
 
-        /* Garis pemisah sebelum ikon sosial media */
-        .separator {
-            margin-top: 30px;
-            border-top: 1px solid #ddd;
-            width: 100%;
+        /* Judul Merchandise */
+        .merch-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+            margin-left: 50px;
         }
 
-        /* Styling untuk ikon sosial media */
+        /* Slideshow */
+        .slideshow-container {
+            position: relative;
+            max-width: 250px;
+            margin: 10px auto;
+            overflow: hidden;
+            border-radius: 10px;
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        /* Titik Indikator */
+        .dots {
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .dot {
+            height: 6px;
+            width: 6px;
+            margin: 0 3px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #555;
+        }
+
+        /* Garis Pemisah */
+        .separator {
+            margin: 20px auto;
+            width: 80%;
+            border-top: 1px solid #ddd;
+        }
+
+        /* Sosial Media */
         .social-icons {
             text-align: center;
             margin-top: 20px;
@@ -91,25 +137,59 @@
 </head>
 <body>
     <div class="profile-container">
-        <!-- Foto Profil -->
         <img src="Pp.jpg" alt="Youzhie" class="profile-pic">
         
-        <!-- Informasi Profil -->
         <div class="profile-info">
             <h1>Youzhie</h1>
             <p>23 year old, based in Swiss Van Java<br>under the name Youzhie Eesvnxs Synstersty.</p>
         </div>
 
-        <!-- Informasi Kontak dengan warna biru pada teks -->
         <div class="contact-info">
-            <p><a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a></p>
+            <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
         </div>
+    </div>
+
+    <!-- Judul Merchandise -->
+    <div class="merch-title">My Merchandise</div>
+
+    <!-- Slideshow -->
+    <div class="slideshow-container">
+        <div class="slides">
+            <div class="slide">
+                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
+                    <img src="foto1.jpg" alt="Slide 1">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
+                    <img src="foto2.jpg" alt="Slide 2">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
+                    <img src="foto3.jpg" alt="Slide 3">
+                </a>
+            </div>
+            <div class="slide">
+                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
+                    <img src="foto4.jpg" alt="Slide 4">
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Indikator -->
+    <div class="dots">
+        <span class="dot" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
     <!-- Garis Pemisah -->
     <div class="separator"></div>
 
-    <!-- Ikon Sosial Media (Sekarang di bawah garis pemisah) -->
+    <!-- Sosial Media -->
     <div class="social-icons">
         <a href="https://www.facebook.com/share/167jKfveyh/" target="_blank"><i class="fab fa-facebook"></i></a>
         <a href="https://www.instagram.com/eesvnxs?igsh=Mno2ZWNtNHdiY2x1" target="_blank"><i class="fab fa-instagram"></i></a>
@@ -122,5 +202,51 @@
     <div class="footer">
         <p>© 2025 Youzhie, All Rights Reserved</p>
     </div>
+
+    <script>
+        let currentIndex = 0;
+        const slides = document.querySelector(".slides");
+        const dots = document.querySelectorAll(".dot");
+
+        function showSlide(index) {
+            if (index >= dots.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = dots.length - 1;
+            } else {
+                currentIndex = index;
+            }
+
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+            dots.forEach(dot => dot.classList.remove("active"));
+            dots[currentIndex].classList.add("active");
+        }
+
+        function nextSlide() {
+            showSlide(currentIndex + 1);
+        }
+
+        setInterval(nextSlide, 5000);
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => showSlide(index));
+        });
+
+        let startX = 0;
+        let endX = 0;
+
+        slides.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        slides.addEventListener("touchend", (e) => {
+            endX = e.changedTouches[0].clientX;
+            if (startX - endX > 50) {
+                nextSlide();
+            } else if (endX - startX > 50) {
+                showSlide(currentIndex - 1);
+            }
+        });
+    </script>
 </body>
 </html>
