@@ -26,7 +26,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            margin-bottom: 5px; /* Mengurangi jarak dengan bio */
+            margin-bottom: 5px;
         }
 
         .profile-info h1 {
@@ -36,19 +36,21 @@
 
         .profile-info p {
             font-size: 12px !important;
-            margin: 5px 0;
+            margin: 0; /* Menghilangkan jarak bawah bio */
             line-height: 1.4;
         }
 
+        /* Link Email tepat di bawah bio */
+        .contact-info {
+            margin-top: 0;
+        }
+
         .contact-info a {
+            display: inline-block;
             color: #0066cc;
             text-decoration: none;
             font-weight: bold;
             font-size: 12px;
-        }
-
-        .contact-info a:hover {
-            text-decoration: underline;
         }
 
         /* Judul Merchandise */
@@ -102,19 +104,17 @@
             background-color: #555;
         }
 
-        /* Spotify Section */
+        /* Judul Spotify */
         .spotify-title {
             font-size: 18px;
             font-weight: bold;
-            text-align: left; /* Geser ke kiri */
-            margin-left: 50px;
             margin-top: 20px;
+            margin-left: 50px;
         }
 
+        /* Spotify Embed */
         .spotify-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            text-align: center;
             margin-top: 10px;
         }
 
@@ -124,7 +124,7 @@
             height: 100px;
         }
 
-        /* Garis Pemisah */
+        /* Garis Pemisah (di bawah Spotify) */
         .separator {
             margin: 20px auto;
             width: 80%;
@@ -142,10 +142,6 @@
             color: #888;
             margin: 0 15px;
             text-decoration: none;
-        }
-
-        .social-icons a:hover {
-            color: #555;
         }
 
         .footer {
@@ -166,7 +162,7 @@
         </div>
 
         <div class="contact-info">
-            <p><a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a></p>
+            <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
         </div>
     </div>
 
@@ -191,17 +187,15 @@
         <span class="dot" onclick="currentSlide(3)"></span>
     </div>
 
-    <!-- Spotify Section -->
+    <!-- Judul Spotify -->
     <div class="spotify-title">Checkout My Prod. Music</div>
+
+    <!-- Spotify Embed -->
     <div class="spotify-container">
-        <iframe 
-            src="https://open.spotify.com/embed/artist/51vWo4QSdywsaqJTVdXbFu?utm_source=generator"
-            allowtransparency="true" 
-            allow="encrypted-media">
-        </iframe>
+        <iframe src="https://open.spotify.com/embed/artist/51vWo4QSdywsaqJTVdXbFu?utm_source=generator" allowtransparency="true" allow="encrypted-media"></iframe>
     </div>
 
-    <!-- Garis Pemisah -->
+    <!-- Garis Pemisah (di bawah Spotify) -->
     <div class="separator"></div>
 
     <!-- Sosial Media -->
@@ -224,7 +218,14 @@
         const dots = document.querySelectorAll(".dot");
 
         function showSlide(index) {
-            currentIndex = index >= dots.length ? 0 : index;
+            if (index >= dots.length) {
+                currentIndex = 0;
+            } else if (index < 0) {
+                currentIndex = dots.length - 1;
+            } else {
+                currentIndex = index;
+            }
+
             slides.style.transform = `translateX(-${currentIndex * 100}%)`;
             dots.forEach(dot => dot.classList.remove("active"));
             dots[currentIndex].classList.add("active");
@@ -235,16 +236,6 @@
         }
 
         setInterval(nextSlide, 5000);
-
-        dots.forEach((dot, index) => {
-            dot.addEventListener("click", () => showSlide(index));
-        });
-
-        slides.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
-        slides.addEventListener("touchend", (e) => {
-            if (startX - e.changedTouches[0].clientX > 50) nextSlide();
-            else if (e.changedTouches[0].clientX - startX > 50) showSlide(currentIndex - 1);
-        });
     </script>
 </body>
 </html>
