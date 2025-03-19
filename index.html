@@ -26,7 +26,7 @@
             width: 100px;
             height: 100px;
             border-radius: 50%;
-            margin-bottom: 10px; /* Dikurangi agar bio dan email tidak terlalu berjarak */
+            margin-bottom: 5px; /* Mengurangi jarak dengan bio */
         }
 
         .profile-info h1 {
@@ -36,7 +36,7 @@
 
         .profile-info p {
             font-size: 12px !important;
-            margin: 0;
+            margin: 5px 0;
             line-height: 1.4;
         }
 
@@ -45,7 +45,6 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 12px;
-            display: block; /* Supaya email langsung di bawah bio tanpa jarak lebih */
         }
 
         .contact-info a:hover {
@@ -78,7 +77,7 @@
             min-width: 100%;
         }
 
-        .slide img {
+        .slide a img {
             width: 100%;
             border-radius: 10px;
         }
@@ -101,6 +100,28 @@
 
         .active {
             background-color: #555;
+        }
+
+        /* Spotify Section */
+        .spotify-title {
+            font-size: 18px;
+            font-weight: bold;
+            text-align: left; /* Geser ke kiri */
+            margin-left: 50px;
+            margin-top: 20px;
+        }
+
+        .spotify-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        iframe {
+            border: none;
+            width: 300px;
+            height: 100px;
         }
 
         /* Garis Pemisah */
@@ -145,7 +166,7 @@
         </div>
 
         <div class="contact-info">
-            <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
+            <p><a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a></p>
         </div>
     </div>
 
@@ -155,26 +176,10 @@
     <!-- Slideshow -->
     <div class="slideshow-container">
         <div class="slides">
-            <div class="slide">
-                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
-                    <img src="foto1.jpg" alt="Slide 1">
-                </a>
-            </div>
-            <div class="slide">
-                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
-                    <img src="Foto2.jpg" alt="Slide 2">
-                </a>
-            </div>
-            <div class="slide">
-                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
-                    <img src="foto3.jpg" alt="Slide 3">
-                </a>
-            </div>
-            <div class="slide">
-                <a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank">
-                    <img src="foto4.jpg" alt="Slide 4">
-                </a>
-            </div>
+            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto1.jpg" alt="Slide 1"></a></div>
+            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto2.jpg" alt="Slide 2"></a></div>
+            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto3.jpg" alt="Slide 3"></a></div>
+            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto4.jpg" alt="Slide 4"></a></div>
         </div>
     </div>
 
@@ -184,6 +189,16 @@
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <span class="dot" onclick="currentSlide(3)"></span>
+    </div>
+
+    <!-- Spotify Section -->
+    <div class="spotify-title">Checkout My Prod. Music</div>
+    <div class="spotify-container">
+        <iframe 
+            src="https://open.spotify.com/embed/artist/51vWo4QSdywsaqJTVdXbFu?utm_source=generator"
+            allowtransparency="true" 
+            allow="encrypted-media">
+        </iframe>
     </div>
 
     <!-- Garis Pemisah -->
@@ -209,14 +224,7 @@
         const dots = document.querySelectorAll(".dot");
 
         function showSlide(index) {
-            if (index >= dots.length) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = dots.length - 1;
-            } else {
-                currentIndex = index;
-            }
-
+            currentIndex = index >= dots.length ? 0 : index;
             slides.style.transform = `translateX(-${currentIndex * 100}%)`;
             dots.forEach(dot => dot.classList.remove("active"));
             dots[currentIndex].classList.add("active");
@@ -232,20 +240,10 @@
             dot.addEventListener("click", () => showSlide(index));
         });
 
-        let startX = 0;
-        let endX = 0;
-
-        slides.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
-        });
-
+        slides.addEventListener("touchstart", (e) => startX = e.touches[0].clientX);
         slides.addEventListener("touchend", (e) => {
-            endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) {
-                nextSlide();
-            } else if (endX - startX > 50) {
-                showSlide(currentIndex - 1);
-            }
+            if (startX - e.changedTouches[0].clientX > 50) nextSlide();
+            else if (e.changedTouches[0].clientX - startX > 50) showSlide(currentIndex - 1);
         });
     </script>
 </body>
