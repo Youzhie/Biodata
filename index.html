@@ -36,7 +36,7 @@
 
         .profile-info p {
             font-size: 12px !important;
-            margin: 0; /* Menghilangkan jarak bawah bio */
+            margin: 0;
             line-height: 1.4;
         }
 
@@ -51,6 +51,27 @@
             text-decoration: none;
             font-weight: bold;
             font-size: 12px;
+        }
+
+        /* Tombol Support Me di pojok kanan atas */
+        .support-me {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;  /* Mengurangi ukuran padding */
+            font-size: 10px; /* Ukuran teks lebih kecil */
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .support-me i {
+            font-size: 12px; /* Mengurangi ukuran ikon */
+            margin-right: 5px;
         }
 
         /* Judul Merchandise */
@@ -165,6 +186,11 @@
             <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
         </div>
     </div>
+
+    <!-- Tombol Support Me -->
+    <a href="https://saweria.co/eesvnxs" class="support-me">
+        <i class="fas fa-money-bill-wave"></i> Support Me
+    </a>
 
     <!-- Judul Merchandise -->
     <div class="merch-title">My Merchandise</div>
