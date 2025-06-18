@@ -1,267 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Youzhie - Profile</title>
-    
-    <!-- Link Font Awesome untuk ikon sosial media -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Youzhie - Profile</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-        }
+    .support-me-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 4px 8px;
+      font-size: 10px;
+      font-weight: bold;
+      text-decoration: none;
+      border-radius: 5px;
+    }
 
-        .profile-container {
-            text-align: left;
-            margin: 50px;
-        }
+    .support-me-button i {
+      font-size: 10px;
+      margin-right: 3px;
+    }
 
-        /* Foto Profil */
-        .profile-pic {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            margin-bottom: 5px;
-        }
+    .profile-container {
+      text-align: left;
+      margin: 50px;
+      position: relative;
+    }
 
-        .profile-info h1 {
-            font-size: 30px;
-            margin: 10px 0;
-        }
+    .profile-pic {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+    }
 
-        .profile-info p {
-            font-size: 12px !important;
-            margin: 0;
-            line-height: 1.4;
-        }
+    .profile-info h1 {
+      font-size: 30px;
+      margin: 0;
+    }
 
-        /* Link Email tepat di bawah bio */
-        .contact-info {
-            margin-top: 0;
-        }
+    .profile-info p {
+      font-size: 12px !important;
+      margin: 8px 0 0 0;
+      line-height: 1.4;
+    }
 
-        .contact-info a {
-            display: inline-block;
-            color: #0066cc;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 12px;
-        }
+    .contact-info {
+      margin-top: 5px;
+    }
 
-        /* Tombol Support Me di pojok kanan atas */
-        .support-me {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: #28a745;
-            color: white;
-            padding: 5px 10px;  /* Mengurangi ukuran padding */
-            font-size: 10px; /* Ukuran teks lebih kecil */
-            font-weight: bold;
-            border-radius: 5px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-        }
+    .contact-info a {
+      display: inline-block;
+      color: #0066cc;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 12px;
+    }
 
-        .support-me i {
-            font-size: 12px; /* Mengurangi ukuran ikon */
-            margin-right: 5px;
-        }
+    .merch-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
 
-        /* Judul Merchandise */
-        .merch-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-left: 50px;
-        }
+    .slideshow-container {
+      position: relative;
+      max-width: 250px;
+      margin: 10px auto;
+      overflow: hidden;
+      border-radius: 10px;
+    }
 
-        /* Slideshow */
-        .slideshow-container {
-            position: relative;
-            max-width: 250px;
-            margin: 10px auto;
-            overflow: hidden;
-            border-radius: 10px;
-        }
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+    }
 
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
+    .slide {
+      min-width: 100%;
+    }
 
-        .slide {
-            min-width: 100%;
-        }
+    .slide a img {
+      width: 100%;
+      border-radius: 10px;
+    }
 
-        .slide a img {
-            width: 100%;
-            border-radius: 10px;
-        }
+    .dots {
+      text-align: center;
+      margin-top: 10px;
+    }
 
-        /* Titik Indikator */
-        .dots {
-            text-align: center;
-            margin-top: 10px;
-        }
+    .dot {
+      height: 6px;
+      width: 6px;
+      margin: 0 3px;
+      background-color: #bbb;
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+    }
 
-        .dot {
-            height: 6px;
-            width: 6px;
-            margin: 0 3px;
-            background-color: #bbb;
-            border-radius: 50%;
-            display: inline-block;
-            cursor: pointer;
-        }
+    .active {
+      background-color: #555;
+    }
 
-        .active {
-            background-color: #555;
-        }
+    .spotify-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-top: 20px;
+      margin-left: 50px;
+    }
 
-        /* Judul Spotify */
-        .spotify-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-top: 20px;
-            margin-left: 50px;
-        }
+    .spotify-container {
+      text-align: center;
+      margin-top: 10px;
+    }
 
-        /* Spotify Embed */
-        .spotify-container {
-            text-align: center;
-            margin-top: 10px;
-        }
+    iframe {
+      border: none;
+      width: 300px;
+      height: 100px;
+    }
 
-        iframe {
-            border: none;
-            width: 300px;
-            height: 100px;
-        }
+    .separator {
+      margin: 20px auto;
+      width: 80%;
+      border-top: 1px solid #ddd;
+    }
 
-        /* Garis Pemisah (di bawah Spotify) */
-        .separator {
-            margin: 20px auto;
-            width: 80%;
-            border-top: 1px solid #ddd;
-        }
+    .social-icons {
+      text-align: center;
+      margin-top: 20px;
+    }
 
-        /* Sosial Media */
-        .social-icons {
-            text-align: center;
-            margin-top: 20px;
-        }
+    .social-icons a {
+      font-size: 24px;
+      color: #888;
+      margin: 0 15px;
+      text-decoration: none;
+    }
 
-        .social-icons a {
-            font-size: 24px;
-            color: #888;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-
-        .footer {
-            margin-top: 20px;
-            font-size: 14px;
-            color: #888;
-            text-align: center;
-        }
-    </style>
+    .footer {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #888;
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
-    <div class="profile-container">
-        <img src="Pp.jpg" alt="Youzhie" class="profile-pic">
-        
-        <div class="profile-info">
-            <h1>Youzhie</h1>
-            <p>23 year old, based in Swiss Van Java<br>under the name Youzhie Eesvnxs Synstersty.</p>
-        </div>
+  <!-- Tombol Support Me -->
+  <a href="https://saweria.co/eesvnxs" class="support-me-button"><i class="fas fa-money-bill-wave"></i>Support Me</a>
 
-        <div class="contact-info">
-            <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
-        </div>
+  <!-- Profil -->
+  <div class="profile-container">
+    <img src="Pp.jpg" alt="Youzhie" class="profile-pic" />
+    <div class="profile-info">
+      <h1>Youzhie</h1>
+      <p>23 year old, based in Swiss Van Java<br/>under the name Youzhie Eesvnxs Synstersty.</p>
     </div>
-
-    <!-- Tombol Support Me -->
-    <a href="https://saweria.co/eesvnxs" class="support-me">
-        <i class="fas fa-money-bill-wave"></i> Support Me
-    </a>
-
-    <!-- Judul Merchandise -->
-    <div class="merch-title">My Merchandise</div>
-
-    <!-- Slideshow -->
-    <div class="slideshow-container">
-        <div class="slides">
-            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto1.jpg" alt="Slide 1"></a></div>
-            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="Foto2.jpg" alt="Slide 2"></a></div>
-            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto3.jpg" alt="Slide 3"></a></div>
-            <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto4.jpg" alt="Slide 4"></a></div>
-        </div>
+    <div class="contact-info">
+      <a href="mailto:eesvnxs@gmail.com">Need Something? Just E-Mail Me.</a>
     </div>
+  </div>
 
-    <!-- Indikator -->
-    <div class="dots">
-        <span class="dot" onclick="currentSlide(0)"></span>
-        <span class="dot" onclick="currentSlide(1)"></span>
-        <span class="dot" onclick="currentSlide(2)"></span>
-        <span class="dot" onclick="currentSlide(3)"></span>
+  <!-- Judul Merchandise -->
+  <div class="merch-title">My Merchandise</div>
+
+  <!-- Slideshow -->
+  <div class="slideshow-container">
+    <div class="slides">
+      <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto1.jpg" alt="Slide 1" /></a></div>
+      <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto2.jpg" alt="Slide 2" /></a></div>
+      <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto3.jpg" alt="Slide 3" /></a></div>
+      <div class="slide"><a href="https://www.instagram.com/yoo7z?igsh=bm9pa2Z3eXQydGYy" target="_blank"><img src="foto4.jpg" alt="Slide 4" /></a></div>
     </div>
+  </div>
 
-    <!-- Judul Spotify -->
-    <div class="spotify-title">Checkout My Prod. Music</div>
+  <!-- Indikator -->
+  <div class="dots">
+    <span class="dot" onclick="currentSlide(0)"></span>
+    <span class="dot" onclick="currentSlide(1)"></span>
+    <span class="dot" onclick="currentSlide(2)"></span>
+    <span class="dot" onclick="currentSlide(3)"></span>
+  </div>
 
-    <!-- Spotify Embed -->
-    <div class="spotify-container">
-        <iframe src="https://open.spotify.com/artist/7KzX40lBzJtMhiXCpzngrH?utm_source=generator" allowtransparency="true" allow="encrypted-media"></iframe>
-    </div>
+  <!-- Spotify Section -->
+  <div class="spotify-title">Checkout My Prod. Music</div>
+  <div class="spotify-container">
+    <iframe src="https://open.spotify.com/embed/artist/7KzX40lBzJtMhiXCpzngrH?utm_source=generator" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
 
-    <!-- Garis Pemisah (di bawah Spotify) -->
-    <div class="separator"></div>
+  <!-- Garis pemisah -->
+  <div class="separator"></div>
 
-    <!-- Sosial Media -->
-    <div class="social-icons">
-        <a href="https://www.facebook.com/share/167jKfveyh/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a href="https://www.instagram.com/eesvnxs?igsh=Mno2ZWNtNHdiY2x1" target="_blank"><i class="fab fa-instagram"></i></a>
-        <a href="https://x.com/eesvnxs?s=11" target="_blank"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://youtube.com/@eesvnxs?si=vMocbG-wyKq9_sFw" target="_blank"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.tiktok.com/@eesvnxs?_t=ZS-8tUIsOTcl98&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
-    </div>
+  <!-- Sosial Media -->
+  <div class="social-icons">
+    <a href="https://www.facebook.com/share/167jKfveyh/" target="_blank"><i class="fab fa-facebook"></i></a>
+    <a href="https://www.instagram.com/eesvnxs?igsh=Mno2ZWNtNHdiY2x1" target="_blank"><i class="fab fa-instagram"></i></a>
+    <a href="https://x.com/eesvnxs?s=11" target="_blank"><i class="fab fa-x-twitter"></i></a>
+    <a href="https://youtube.com/@eesvnxs?si=vMocbG-wyKq9_sFw" target="_blank"><i class="fab fa-youtube"></i></a>
+    <a href="https://www.tiktok.com/@eesvnxs?_t=ZS-8tUIsOTcl98&_r=1" target="_blank"><i class="fab fa-tiktok"></i></a>
+  </div>
 
-    <!-- Footer -->
-    <div class="footer">
-        <p>© 2025 Youzhie, All Rights Reserved</p>
-    </div>
+  <!-- Footer -->
+  <div class="footer">
+    <p>© 2025 Youzhie, All Rights Reserved</p>
+  </div>
 
-    <script>
-        let currentIndex = 0;
-        const slides = document.querySelector(".slides");
-        const dots = document.querySelectorAll(".dot");
+  <!-- Script slideshow -->
+  <script>
+    let currentIndex = 0;
+    const slides = document.querySelector(".slides");
+    const dots = document.querySelectorAll(".dot");
 
-        function showSlide(index) {
-            if (index >= dots.length) {
-                currentIndex = 0;
-            } else if (index < 0) {
-                currentIndex = dots.length - 1;
-            } else {
-                currentIndex = index;
-            }
+    function showSlide(index) {
+      if (index >= dots.length) {
+        currentIndex = 0;
+      } else if (index < 0) {
+        currentIndex = dots.length - 1;
+      } else {
+        currentIndex = index;
+      }
 
-            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
-            dots.forEach(dot => dot.classList.remove("active"));
-            dots[currentIndex].classList.add("active");
-        }
+      slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[currentIndex].classList.add("active");
+    }
 
-        function nextSlide() {
-            showSlide(currentIndex + 1);
-        }
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
 
-        setInterval(nextSlide, 5000);
-    </script>
+    setInterval(nextSlide, 5000);
+  </script>
 </body>
 </html>
